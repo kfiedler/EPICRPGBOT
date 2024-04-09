@@ -134,7 +134,7 @@ function sendCommand($globals, $command){
 
 function getMessages($globals, $limit){
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://discord.com/api/v9/channels/1227059160042963014/messages?limit=$limit");
+    curl_setopt($ch, CURLOPT_URL, $globals["discord_messages"]."?limit=$limit");
     curl_setopt($ch, CURLOPT_HTTPHEADER, $globals["headers"]);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
