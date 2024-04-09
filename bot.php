@@ -7,7 +7,7 @@ $last_message_ids=[];
 
 $globals["oasis_rpg_arena_url"] = "https://discord.com/api/v9/channels/1122924019906261052/messages?limit=10";
 $globals["discord_interactions"] = "https://discord.com/api/v9/interactions";
-$globals["discord_messages"] = "https://discord.com/api/v9/channels/1217655398467764334/messages";
+$globals["discord_messages"] = "https://discord.com/api/v9/channels/1227059160042963014/messages";
 $globals["inventory"] = [];
 
 $globals["headers"] = array(
