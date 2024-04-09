@@ -1,4 +1,11 @@
 <?php
+error_reporting(0);
+date_default_timezone_set("America/Chicago");
+
+$globals["oasis_rpg_arena_url"] = "https://discord.com/api/v9/channels/1122924019906261052/messages?limit=50"; // the url to arenas
+$globals["discord_interactions"] = "https://discord.com/api/v9/interactions";
+$globals["discord_messages"] = "https://discord.com/api/v9/channels/1227059160042963014/messages"; // what chat you want the bot to run in
+
 $user = readline('enter your username (account1 or account2):');
 
 switch($user){
@@ -15,6 +22,14 @@ switch($user){
 }
 
 $type = readline('bot or arena :');
+
+
+$globals["headers"] = array(
+    "authorization: {$globals["authorization"]}",
+    "content-type: application/json",
+    "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "x-super-properties: eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImVuLVVTIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMi4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTIyLjAuMC4wIiwib3NfdmVyc2lvbiI6IjEwIiwicmVmZXJyZXIiOiIiLCJyZWZlcnJpbmdfZG9tYWluIjoiIiwicmVmZXJyZXJfY3VycmVudCI6Imh0dHBzOi8vZGlzY29yZC5jb20vIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiZGlzY29yZC5jb20iLCJyZWxlYXNlX2NoYW5uZWwiOiJzdGFibGUiLCJjbGllbnRfYnVpbGRfbnVtYmVyIjoyNzk5NDMsImNsaWVudF9ldmVudF9zb3VyY2UiOm51bGx9",
+);
 
 switch($type){
     case "bot":
@@ -124,6 +139,7 @@ function sendCommand($globals, $command){
     curl_setopt($ch, CURLOPT_HTTPHEADER, $globals["headers"]);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
     curl_setopt($ch, CURLOPT_POST, TRUE);
+    //curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:8888");
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $response = curl_exec($ch);
@@ -138,6 +154,7 @@ function getMessages($globals, $limit){
     curl_setopt($ch, CURLOPT_HTTPHEADER, $globals["headers"]);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    //curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:8888");
     $response = curl_exec($ch);
     $result = json_decode($response);
     curl_close($ch);
