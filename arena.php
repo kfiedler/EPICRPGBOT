@@ -35,7 +35,7 @@ while(true) {
 
                         if (!in_array($message->id, $last_message_ids)) {
                             $count = count($last_message_ids);
-                            if ($count >= 5) {
+                            if ($count >= 50) {
                                 array_shift($last_message_ids);
                             }
                             $last_message_ids[] = $message->id;
